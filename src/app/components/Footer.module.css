@@ -1,0 +1,40 @@
+.footer {
+    color: #383838; /* White text */
+    padding: 20px 0; /* Padding */
+    text-align: center; /* Centered text */
+  }
+  
+  .container {
+    max-width: 1200px; /* Maximum width for larger screens */
+    margin: 0 auto; /* Centered margin */
+    padding: 0 20px; /* Horizontal padding */
+  }
+  
+  .text {
+    margin: 0; /* No margin */
+    color: #383838; /* White text */
+  }
+  
+  .nav {
+    margin-top: 10px; /* Spacing above navigation */
+  }
+  
+  .nav ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* No padding */
+  }
+  
+  .nav li {
+    display: inline; /* Inline items */
+    margin: 0 15px; /* Spacing between items */
+  }
+  
+  .nav a {
+    color: #252525; /* White text */
+    text-decoration: none; /* No underline */
+  }
+  
+  .nav a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  

@@ -2,16 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
+import Footer from './components/Footer';
 import styles from './page.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import BeldaranBot from './components/BeldaranBot';
-import Link from 'next/link';
-import Footer from './components/Footer'; 
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,139 +16,119 @@ export default function Home() {
   };
 
   useEffect(() => {
-    gsap.fromTo(
-      storySectionRef.current,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: storySectionRef.current,
-          start: 'top 80%',
-          end: 'bottom 60%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    );
+    // GSAP for fade-in effects
+    if (storySectionRef.current) {
+      import('gsap').then(({ default: gsap }) => {
+        import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+          gsap.registerPlugin(ScrollTrigger);
+          gsap.fromTo(
+            storySectionRef.current,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              scrollTrigger: {
+                trigger: storySectionRef.current,
+                start: 'top 80%',
+                end: 'bottom 60%',
+                toggleActions: 'play none none reverse',
+              },
+            }
+          );
+        });
+      });
+    }
   }, [isOpen]);
 
   return (
     <div className={styles.container}>
-      
-      {/* Main Hero Section */}
-      <motion.section
-        className={styles.hero}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-      >
-        <motion.h1
-          className={styles.heroTitle}
-          whileHover={{ scale: 1.1, color: '#00FF00' }}
-        >
-          Welcome to the World of <span className={styles.beldaran}>Beldaran</span>
-        </motion.h1>
-        <motion.p
-          className={styles.heroText}
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.5 }}
-        >
-          Where Words Work Wonders!
-        </motion.p>
+      {/* Navbar Section */}
+      <nav className={styles.navbar}>
+        <ul className={styles.navItems}>
+          <li className={styles.navItem}>
+            <span>Language</span>
+            <ul className={styles.subMenu}>
+              <li><Link href="/language/english">English</Link></li>
+              <li><Link href="/language/french">French</Link></li>
+              <li><Link href="/language/spanish">Spanish</Link></li>
+            </ul>
+          </li>
+          <li className={styles.navItem}>
+            <span>Terms</span>
+            <ul className={styles.subMenu}>
+              <li><Link href="/terms/general">General Terms</Link></li>
+              <li><Link href="/terms/payment">Payment Terms</Link></li>
+              <li><Link href="/terms/user">User Agreement</Link></li>
+            </ul>
+          </li>
+          <li className={styles.navItem}>
+            <span>Privacy Policy</span>
+            <ul className={styles.subMenu}>
+              <li><Link href="/privacy/data">Data Privacy</Link></li>
+              <li><Link href="/privacy/cookies">Cookie Policy</Link></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
 
-        <motion.button
-          className="btn btn-dark"
-          whileHover={{ scale: 1.1 }}
-          onClick={handleToggle}
-        >
-          {isOpen ? "Hide" : "Tell me more"}
-        </motion.button>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <h1 className={styles.heroTitle}>
+          Welcome to the Aethereal Nexus
+        </h1>
+        <p className={styles.heroText}>
+          Explore the interconnectedness of reality, where art and technology meet.
+        </p>
+        <button className="btn btn-dark" onClick={handleToggle}>
+          {isOpen ? "Hide Topics" : "Explore Topics"}
+        </button>
+      </section>
 
-        <Link href="/unveil-the-secrets">
-          <motion.button
-            className="btn btn-success"
-            whileHover={{ scale: 1.1 }}
-          >
-            Join the Adventure
-          </motion.button>
-        </Link>
-      </motion.section>
-
-      {/* Dynamic storytelling section */}
+      {/* Topics Section */}
       {isOpen && (
-        <motion.section
-          className={styles.storySection}
-          ref={storySectionRef}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <motion.h2
-            className={styles.sectionTitle}
-            whileHover={{ scale: 1.05, rotate: 1 }}
-          >
-            The Sublime Science of Sound
-          </motion.h2>
-          <p className={styles.sectionText}>
-            Let’s talk about <span className={styles.highlight}>phonetic ambiguity</span>. It’s that magical moment when <span className={styles.highlight}>“fire”</span> sounds like <span className={styles.highlight}>“buyer”</span>. Suddenly, you’re contemplating whether your dreams are on sale. Beldaran thrives on this delightful chaos.
-          </p>
-          <p className={styles.sectionText}>
-            Who knew that saying <span className={styles.highlight}>“I want freedom”</span> could conjure visions of a <span className={styles.highlight}>“fridge”</span> full of dreams?
-          </p>
-        </motion.section>
+        <section className={styles.topicsSection} ref={storySectionRef}>
+          <h2 className={styles.sectionTitle}>Key Topics</h2>
+          <ul className={styles.topicsList}>
+            <li>
+              <Link href="/topic1">
+                <a className={styles.topicLink}>Introduction to Quantum Computing</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/topic2">
+                <a className={styles.topicLink}>The Mysteries of Black Holes</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/topic3">
+                <a className={styles.topicLink}>Artificial Intelligence & Ethics</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/topic4">
+                <a className={styles.topicLink}>Exploring the Human Brain</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/topic5">
+                <a className={styles.topicLink}>Future of Renewable Energy</a>
+              </Link>
+            </li>
+          </ul>
+        </section>
       )}
 
-      {/* Further Sections */}
-      <motion.section
-        className={styles.storySection}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-      >
-        <motion.h2
-          className={styles.sectionTitle}
-          whileHover={{ scale: 1.05, color: '#ff007f' }}
-        >
-          The Genius of Unintentional Suggestion
-        </motion.h2>
-        <p className={styles.sectionText}>
-          Why communicate clearly when you can sprinkle in irony? Beldaran invites the unexpected to dance in your mind.
-        </p>
-      </motion.section>
-
-      <motion.section
-        className={styles.storySection}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-      >
-        <motion.h2
-          className={styles.sectionTitle}
-          whileHover={{ scale: 1.05, color: '#ff007f' }}
-        >
-          The Art of Confusing Clarity
-        </motion.h2>
-        <p className={styles.sectionText}>
-          Want your dreams to manifest? Just utter <span className={styles.highlight}>“cheese”</span>. Because nothing screams creativity like dairy.
-        </p>
-      </motion.section>
-
-      <BeldaranBot />
-
       {/* Call to Action Section */}
-      <motion.section className={styles.callToAction}>
-        <h2>Ready to Trailblaze Your Experience?</h2>
-        <p>Don't miss out on the chance to reshape your reality with Beldaran. Join now and unlock the secrets waiting for you!</p>
-        <Link href="/become-a-trailblazer">
-          <motion.button className="btn btn-primary" whileHover={{ scale: 1.1 }}>
-            Join the Experience
-          </motion.button>
+      <section className={styles.callToAction}>
+        <h2>Start Your Journey Today</h2>
+        <p>Uncover deeper insights and expand your horizons with Aethereal Nexus.</p>
+        <Link href="/join">
+          <button className="btn btn-primary">Expand even more the Nexus (...) </button>
         </Link>
-      </motion.section>
+      </section>
 
-      <Footer />  
+      <Footer />
     </div>
   );
 }
