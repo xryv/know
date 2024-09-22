@@ -1,0 +1,40 @@
+.contextAnimationContainer {
+    position: relative;
+    width: 300px; /* Centered area */
+    height: 300px; /* Centered area */
+    margin: 0 auto; /* Center the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent shapes from going outside */
+  }
+  
+  .contextShape {
+    position: absolute;
+    border-radius: 20%; /* Slightly rounded corners for variation */
+  }
+  
+  .contextShape1 {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 165, 0, 0.7); /* Orange */
+  }
+  
+  .contextShape2 {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 128, 0, 0.7); /* Green */
+  }
+  
+  .contextShape3 {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 255, 0.7); /* Blue */
+  }
+  
+  .contextShape4 {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(75, 0, 130, 0.7); /* Indigo */
+  }
+  

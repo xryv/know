@@ -1,63 +1,165 @@
+/* Full-screen Image Carousel */
+.carousel {
+  position: fixed; /* Fixed to cover the entire screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Hide overflow */
+  z-index: 0; /* Place behind other elements */
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the entire area */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 1s ease-in-out; /* Fade effect */
+}
+
+.image.active {
+  opacity: 1; /* Show the current image */
+}
+
 /* Navbar styles */
 .navbar {
-  display: flex;
-  justify-content: center;
-  background-color: #1a1a1a;
+  background-color: rgba(26, 26, 26, 0.8); /* Semi-transparent */
   padding: 10px 0;
+  position: relative;
+  z-index: 1000;
+  transition: background-color 0.3s; /* Smooth background change */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+  border-bottom: 2px solid transparent; /* Fading border */
+}
+
+.navbar:hover {
+  border-bottom: 2px solid rgba(0, 255, 0, 0.8); /* Fading border on hover */
+}
+
+.navbarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbarToggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s; /* Animation on click */
+}
+
+.navbarToggle:active {
+  transform: scale(0.95); /* Shrink effect on click */
 }
 
 .navItems {
   list-style: none;
-  display: flex;
-  gap: 20px;
+  display: none; /* Hidden by default */
+  flex-direction: column; /* Stack items vertically */
+  padding: 0;
+}
+
+.navItems.active {
+  display: flex; /* Show when active */
 }
 
 .navItem {
   position: relative;
 }
 
-.navItem span {
+.submenuToggle,
+.subSubmenuToggle {
+  background: none;
+  border: none;
   color: #fff;
+  text-align: left;
+  padding: 10px;
+  width: 100%;
   cursor: pointer;
-  padding: 10px;
+  transition: background-color 0.3s, transform 0.2s, color 0.3s; /* Animation on hover and click */
 }
 
-.navItem span:hover {
-  color: #00ff00;
+.submenuToggle:hover,
+.subSubmenuToggle:hover {
+  background-color: rgba(0, 255, 0, 0.2); /* Light green background on hover */
+  color: #00ff00; /* Change text color on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
-.subMenu {
-  position: absolute;
-  top: 100%;
-  left: 0;
+.submenuToggle:active,
+.subSubmenuToggle:active {
+  transform: scale(0.95); /* Shrink on click */
+}
+
+.subMenu,
+.subSubMenu {
+  display: none; /* Hidden by default */
   background-color: #333;
+  padding: 5px 0;
   list-style: none;
-  padding: 10px;
-  display: none;
-  z-index: 10;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Fade and slide effect */
+  transform: translateY(-10px); /* Start above */
 }
 
-.subMenu li {
-  margin: 5px 0;
+.subMenu.active,
+.subSubMenu.active {
+  display: block; /* Show when active */
+  opacity: 1; /* Fade in */
+  transform: translateY(0); /* Slide down */
 }
 
-.subMenu li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.subMenu li a:hover {
-  color: #00ff00;
-}
-
-.navItem:hover .subMenu {
-  display: block;
-}
-
-/* Hero Section */
-.heroText {
-  color: #ffffff;
-  font-size: 1.2em;
-  margin-top: 10px;
+/* Hero section styles */
+.hero {
   text-align: center;
+  padding: 50px 20px;
+  position: relative;
+  z-index: 2; /* Ensure hero content is above the carousel */
+}
+
+.heroTitle {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.heroText {
+  font-size: 18px;
+  color: #bbb;
+}
+
+/* Call to Action styles */
+.callToAction {
+  text-align: center;
+  padding: 30px 20px;
+  background-color: rgba(26, 26, 26, 0.8); /* Semi-transparent */
+}
+
+/* Overlay styles */
+.overlay {
+  position: fixed; /* Fixed to cover the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  color: white; /* Text color on top of the images */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 1; /* Ensure overlay is on top of the carousel */
+}
+
+/* General Container */
+.container {
+  position: relative;
+  height: 100vh; /* Full height for no scroll */
+  overflow: hidden; /* Prevent any overflow */
 }

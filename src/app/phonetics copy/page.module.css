@@ -1,0 +1,58 @@
+.container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  .content {
+    position: relative;
+    z-index: 2; /* Ensure content is above the canvas */
+    padding: 20px;
+    background-color: rgba(26, 26, 26, 0.7); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .lorem {
+    margin: 20px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  .topicsList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .topicsList li {
+    margin: 10px 0;
+  }
+  
+  .backButton {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #00ff00;
+    color: #121212;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .backButton:hover {
+    background-color: #00cc00; /* Darker green on hover */
+  }
+  

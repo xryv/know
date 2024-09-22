@@ -5,28 +5,23 @@
   box-sizing: border-box;
 }
 
+/* Body Styles */
 body {
-  font-family: 'Helvetica Neue', sans-serif;
-  background: #f8f9fa;
-  color: #212529;
+  font-family: 'Poppins', sans-serif; /* Consistent font */
+  background-color: #121212; /* Dark background */
+  color: #fff; /* White text color */
+  scroll-behavior: smooth; /* Smooth scrolling */
 }
 
+/* Link Styles */
 a {
-  text-decoration: none;
-  color: inherit;
+  text-decoration: none; /* No underline */
+  color: inherit; /* Inherit color from parent */
+  transition: color 0.3s; /* Smooth color transition */
 }
 
-/* globals.css */
-
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
+a:hover {
+  color: #00ff00; /* Change link color on hover */
 }
 
 /* Add any other global styles here */

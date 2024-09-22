@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #121212; /* Match your theme */
+  color: #fff;
+}
+
+.content {
+  max-width: 800px; /* Limit content width for readability */
+  text-align: left;
+  background: rgba(26, 26, 26, 0.8); /* Semi-transparent background for contrast */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  font-size: 2.5rem; /* Large title */
+  margin-bottom: 20px;
+  color: #00ff00; /* Accent color for title */
+}
+
+.description {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.subTitle {
+  font-size: 1.8rem;
+  margin: 20px 0 10px;
+  color: #00ff00; /* Accent color for subtitles */
+}
+
+.text {
+  font-size: 1.2rem;
+  line-height: 1.6; /* Improved readability */
+  margin-bottom: 15px;
+}
+
+.examplesList {
+  list-style: none; /* No bullet points */
+  padding-left: 0; /* Remove padding */
+}
+
+.examplesList li {
+  margin-bottom: 10px; /* Space between examples */
+}
+
+.backButton {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #00ff00; /* Accent color for buttons */
+  color: #121212; /* Dark text on button */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none; /* No underline */
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.backButton:hover {
+  background-color: #00cc00; /* Darker green on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}

@@ -1,132 +1,152 @@
+// src/app/page.js
+
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Link from 'next/link';
+import { FaVolumeUp, FaLightbulb, FaBrain, FaBookOpen, FaRedo, FaBars, FaTimes } from 'react-icons/fa';
 import Footer from './components/Footer';
 import styles from './page.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ImageCarousel from './animations/ImageCarousel';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  const storySectionRef = useRef(null);
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(null);
+  const [isSubSubmenuOpen, setIsSubSubmenuOpen] = useState(null);
 
-  const handleToggle = () => {
+  const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    // GSAP for fade-in effects
-    if (storySectionRef.current) {
-      import('gsap').then(({ default: gsap }) => {
-        import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-          gsap.registerPlugin(ScrollTrigger);
-          gsap.fromTo(
-            storySectionRef.current,
-            { opacity: 0, y: 50 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              scrollTrigger: {
-                trigger: storySectionRef.current,
-                start: 'top 80%',
-                end: 'bottom 60%',
-                toggleActions: 'play none none reverse',
-              },
-            }
-          );
-        });
-      });
-    }
-  }, [isOpen]);
+  const toggleSubmenu = (index) => {
+    setIsSubmenuOpen(isSubmenuOpen === index ? null : index);
+    setIsSubSubmenuOpen(null);
+  };
+
+  const toggleSubSubmenu = (index) => {
+    setIsSubSubmenuOpen(isSubSubmenuOpen === index ? null : index);
+  };
 
   return (
     <div className={styles.container}>
-      {/* Navbar Section */}
-      <nav className={styles.navbar}>
-        <ul className={styles.navItems}>
-          <li className={styles.navItem}>
-            <span>Language</span>
-            <ul className={styles.subMenu}>
-              <li><Link href="/language/english">English</Link></li>
-              <li><Link href="/language/french">French</Link></li>
-              <li><Link href="/language/spanish">Spanish</Link></li>
+      {/* Background Carousel */}
+      <ImageCarousel />
+
+      {/* Overlay for Navbar and Hero Section */}
+      <div className={styles.overlay}>
+        {/* Navbar Section */}
+        <nav className={styles.navbar}>
+          <div className={styles.navbarHeader}>
+            <button className={styles.navbarToggle} onClick={toggleMenu} aria-label="Toggle navigation">
+              {isOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
+          <ul className={`${styles.navItems} ${isOpen ? styles.active : ''}`}>
+            {/* Main Navbar Items */}
+            <li className={styles.navItem}>
+              <button
+                className={styles.submenuToggle}
+                onClick={() => toggleSubmenu(0)}
+                aria-expanded={isSubmenuOpen === 0}
+                aria-label="Topics"
+              >
+                TOPICS
+              </button>
+            <ul className={`${styles.subMenu} ${isSubmenuOpen === 0 ? styles.active : ''}`}>
+              {/* Subtopics */}
+              <li className={styles.subItem}>
+                <button
+                  className={styles.subSubmenuToggle}
+                  onClick={() => toggleSubSubmenu(0)}
+                  aria-expanded={isSubSubmenuOpen === 0}
+                >
+                  Phonetics & Sound Influence
+                </button>
+                <ul className={`${styles.subSubMenu} ${isSubSubmenuOpen === 0 ? styles.active : ''}`}>
+                  <li><Link href="/phonetics/ambiguity">Phonetic Ambiguity</Link></li>
+                  <li><Link href="/phonetics/paronymy">Paronymy</Link></li>
+                  <li><Link href="/phonetics/phonosemantics">Phonosemantics</Link></li>
+                  <li><Link href="/phonetics/sound-symbolism">Sound Symbolism</Link></li>
+                  <li><Link href="/phonetics/psychoacoustics">Psychoacoustic Effect</Link></li>
+                </ul>
+              </li>
+              <li className={styles.subItem}>
+                <button
+                  className={styles.subSubmenuToggle}
+                  onClick={() => toggleSubSubmenu(1)}
+                  aria-expanded={isSubSubmenuOpen === 1}
+                >
+                  Subliminal Messaging & Cognitive Influence
+                </button>
+                <ul className={`${styles.subSubMenu} ${isSubSubmenuOpen === 1 ? styles.active : ''}`}>
+                  <li><Link href="/subliminal/suggestion">Subliminal Suggestion</Link></li>
+                  <li><Link href="/subliminal/priming">Linguistic Priming</Link></li>
+                  <li><Link href="/subliminal/satiation">Semantic Satiation</Link></li>
+                  <li><Link href="/subliminal/commands">Embedded Commands</Link></li>
+                  <li><Link href="/subliminal/presuppositions">Presuppositions</Link></li>
+                </ul>
+              </li>
+              <li className={styles.subItem}>
+                <button
+                  className={styles.subSubmenuToggle}
+                  onClick={() => toggleSubSubmenu(2)}
+                  aria-expanded={isSubSubmenuOpen === 2}
+                >
+                  Psychological Framing & Persuasion
+                </button>
+                <ul className={`${styles.subSubMenu} ${isSubSubmenuOpen === 2 ? styles.active : ''}`}>
+                  <li><Link href="/framing/double-entendre">Double Entendre</Link></li>
+                  <li><Link href="/framing/framing">Framing</Link></li>
+                  <li><Link href="/framing/pacing">Pacing & Leading</Link></li>
+                  <li><Link href="/framing/consent">Implied Consent</Link></li>
+                  <li><Link href="/framing/chunking">Chunking</Link></li>
+                </ul>
+              </li>
+              <li className={styles.subItem}>
+                <button
+                  className={styles.subSubmenuToggle}
+                  onClick={() => toggleSubSubmenu(3)}
+                  aria-expanded={isSubSubmenuOpen === 3}
+                >
+                  Storytelling & Analogies
+                </button>
+                <ul className={`${styles.subSubMenu} ${isSubSubmenuOpen === 3 ? styles.active : ''}`}>
+                  <li><Link href="/storytelling/metaphors">Metaphors & Analogies</Link></li>
+                  <li><Link href="/storytelling/sensory-language">Sensory Language</Link></li>
+                  <li><Link href="/storytelling/conversational-hypnosis">Conversational Hypnosis</Link></li>
+                </ul>
+              </li>
+              <li className={styles.subItem}>
+                <button
+                  className={styles.subSubmenuToggle}
+                  onClick={() => toggleSubSubmenu(4)}
+                  aria-expanded={isSubSubmenuOpen === 4}
+                >
+                  Repetition & Reinforcement
+                </button>
+                <ul className={`${styles.subSubMenu} ${isSubSubmenuOpen === 4 ? styles.active : ''}`}>
+                  <li><Link href="/repetition">Repetition</Link></li>
+                </ul>
+              </li>
             </ul>
           </li>
           <li className={styles.navItem}>
-            <span>Terms</span>
-            <ul className={styles.subMenu}>
-              <li><Link href="/terms/general">General Terms</Link></li>
-              <li><Link href="/terms/payment">Payment Terms</Link></li>
-              <li><Link href="/terms/user">User Agreement</Link></li>
-            </ul>
+            <Link href="/privacy" className={styles.navLink}>Privacy Policy</Link>
           </li>
           <li className={styles.navItem}>
-            <span>Privacy Policy</span>
-            <ul className={styles.subMenu}>
-              <li><Link href="/privacy/data">Data Privacy</Link></li>
-              <li><Link href="/privacy/cookies">Cookie Policy</Link></li>
-            </ul>
+            <Link href="/terms" className={styles.navLink}>Terms of Service</Link>
           </li>
         </ul>
       </nav>
 
       {/* Hero Section */}
       <section className={styles.hero}>
-        <h1 className={styles.heroTitle}>
-          Welcome to the Aethereal Nexus
-        </h1>
-        <p className={styles.heroText}>
-          Explore the interconnectedness of reality, where art and technology meet.
-        </p>
-        <button className="btn btn-dark" onClick={handleToggle}>
-          {isOpen ? "Hide Topics" : "Explore Topics"}
-        </button>
+        <h1 className={styles.heroTitle}>Welcome to the Aethereal Nexus</h1>
+        <p className={styles.heroText}>Explore the interconnectedness of reality, where art and technology meet.</p>
       </section>
 
-      {/* Topics Section */}
-      {isOpen && (
-        <section className={styles.topicsSection} ref={storySectionRef}>
-          <h2 className={styles.sectionTitle}>Key Topics</h2>
-          <ul className={styles.topicsList}>
-            <li>
-              <Link href="/topic1">
-                <a className={styles.topicLink}>Introduction to Quantum Computing</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/topic2">
-                <a className={styles.topicLink}>The Mysteries of Black Holes</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/topic3">
-                <a className={styles.topicLink}>Artificial Intelligence & Ethics</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/topic4">
-                <a className={styles.topicLink}>Exploring the Human Brain</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/topic5">
-                <a className={styles.topicLink}>Future of Renewable Energy</a>
-              </Link>
-            </li>
-          </ul>
-        </section>
-      )}
-
-      {/* Call to Action Section */}
-      <section className={styles.callToAction}>
-        <h2>Start Your Journey Today</h2>
-        <p>Uncover deeper insights and expand your horizons with Aethereal Nexus.</p>
-        <Link href="/join">
-          <button className="btn btn-primary">Expand even more the Nexus (...) </button>
-        </Link>
-      </section>
+      </div>
 
       <Footer />
     </div>
