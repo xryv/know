@@ -1,0 +1,18 @@
+.embraceAnimationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Adjust height as needed */
+    overflow: hidden; /* Prevent overflow during animation */
+    position: relative; /* Position for child elements */
+  }
+  
+  .letter {
+    font-size: 48px; /* Large font size for emphasis */
+    color: hsl(220, 70%, 50%); /* Base color */
+    font-weight: bold;
+    margin: 0 5px; /* Space between letters */
+    transition: transform 0.5s ease; /* Smooth transitions */
+    opacity: 0.8; /* Slight transparency */
+  }
+  

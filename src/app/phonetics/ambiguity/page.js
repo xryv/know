@@ -6,6 +6,10 @@ import Upa from '../../animations/Upa';
 import PlayfulLanguage from '../../animations/Tpsl';
 import Epa from '../../animations/Epa';
 import Ioc from '../../animations/Ioc';
+import Lit from '../../animations/Lit';
+import Teach from '../../animations/Teach';
+import Embrace from '../../animations/Embrace';
+import Unlock from '../../animations/Unlock';
 
 const PhoneticAmbiguity = () => {
   return (
@@ -18,7 +22,7 @@ const PhoneticAmbiguity = () => {
         <p className={styles.description}>
           Phonetic ambiguity is a fascinating phenomenon where words or phrases, sounding similar, lead to different meanings and interpretations. This linguistic intricacy not only showcases the playful nature of language but also highlights the essential role that context plays in our communication. As we explore phonetic ambiguity, we embark on a journey through the intricacies of sound, meaning, and the wonderful world of words!
         </p>
-
+        <Unlock />
 
         <h2 className={styles.subTitle}>Understanding Phonetic Ambiguity</h2>
         <p className={styles.text}>
@@ -56,16 +60,19 @@ const PhoneticAmbiguity = () => {
         <p className={styles.text}>
           Writers and poets often wield phonetic ambiguity as a tool to enrich their work. The art of wordplay adds layers of meaning, inviting readers to explore interpretations beyond the surface. Consider Shakespeare, who often employed this technique to add depth and humor to his plays. By embracing phonetic ambiguity, writers can craft engaging narratives that resonate with their audiences on multiple levels.
         </p>
+        <Lit />
 
         <h2 className={styles.subTitle}>Teaching Phonetic Ambiguity</h2>
         <p className={styles.text}>
           Educators can leverage phonetic ambiguity to make language learning fun and interactive. By introducing activities centered around homophones and phonetic pairs, teachers can encourage students to play with sounds, fostering creativity and critical thinking. Engaging games, such as “Guess the Sound” or “Phonetic Charades,” can bring phonetic ambiguity to life, allowing students to experience the joy of language firsthand.
         </p>
+        <Teach />
 
         <h2 className={styles.subTitle}>Conclusion: Embracing the Sounds of Language</h2>
         <p className={styles.text}>
           In conclusion, phonetic ambiguity serves as a reminder of the rich complexities of language. By embracing this phenomenon, we can enhance our communication skills, appreciate the playful nature of words, and foster a deeper understanding of linguistic nuances. As we explore the sounds that shape our world, let us celebrate the beauty of phonetic ambiguity—an endless source of inspiration and creativity!
         </p>
+        <Embrace />
 
         <Link href="/phonetics" className={styles.backButton}>BE HACK TO PHONE ETHICS</Link>
         <Footer />

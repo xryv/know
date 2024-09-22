@@ -1,0 +1,18 @@
+.unlockAnimationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Adjust height as needed */
+    overflow: hidden; /* Prevent overflow during animation */
+    position: relative; /* Position for child elements */
+  }
+  
+  .key {
+    font-size: 48px; /* Large font size for emphasis */
+    color: hsl(120, 70%, 50%); /* Vibrant green color */
+    font-weight: bold;
+    margin: 0 3px; /* Space between letters */
+    transition: transform 0.3s ease; /* Smooth transitions */
+    opacity: 0.8; /* Slight transparency */
+  }
+  

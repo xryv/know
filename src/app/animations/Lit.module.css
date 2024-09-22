@@ -1,0 +1,21 @@
+.literatureAnimationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Adjust height as needed */
+  overflow: hidden; /* Prevent overflow during animation */
+}
+
+.literatureText {
+  font-size: 2rem; /* Adjust size as needed */
+  opacity: 0; /* Initially hidden */
+  transform: translateY(-50px) rotate(0deg); /* Start above with no rotation */
+  transition: transform 0.5s ease, opacity 0.5s ease, color 0.5s ease; /* Smooth transitions */
+  will-change: transform, opacity; /* Hint to the browser for smoother animations */
+  display: inline-block; /* Needed for individual letter animation */
+}
+
+.literatureText:hover {
+  transform: scale(1.2) rotate(180deg); /* Hover effect */
+  transition: transform 0.3s ease; /* Transition for hover */
+}
